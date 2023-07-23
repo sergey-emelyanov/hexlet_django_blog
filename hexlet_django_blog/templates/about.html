@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %} Эксперимент с Django на Хекслете! {% endblock %}
+
+{% block content %}
 <h1>О Блоге!</h1>
 <p>Эксперимент с Django на Хекслете!</p>
-</body>
-</html>
+{{ tags|join:',' }}
+{% endblock %}
