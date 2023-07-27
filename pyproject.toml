@@ -10,6 +10,7 @@ packages = [{include = "hexlet_django_blog"}]
 python = "^3.10"
 django = "^4.2.3"
 tree = "^0.2.4"
+python-dotenv = "^1.0.0"
 
 
 [build-system]
