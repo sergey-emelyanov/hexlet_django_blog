@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Статья номер {{ article_id }}. Тег {{ tags }}.</h1>
+{% for article in articles %}
+<ul>
+    <li>{{ article.name }} | {{article.body }} </li>
+</ul>
+{% endfor %}
 </body>
 </html>
