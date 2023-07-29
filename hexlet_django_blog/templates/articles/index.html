@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Список статей</h1>
 {% for article in articles %}
-<ul>
-    <li>{{ article.name }} | {{article.body }} </li>
-</ul>
+
+    <h2>{{ article.name }}</h2>
+    <div>{{ article.body }}</div>
+
 {% endfor %}
-</body>
-</html>
+{% endblock %}
