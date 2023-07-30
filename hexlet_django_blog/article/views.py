@@ -29,6 +29,11 @@ class CommentArticleView(View):
 
     def get(self, request, *args, **kwags):
         form = CommentArticleForm()
-        return render(request,'articles/comment.html', context={
-            'form':form
+        return render(request, 'articles/comment.html', context={
+            'form': form
         })
+
+    def post(self, request, *args, **kwargs):
+        form = CommentArticleForm(request.POST)
+        if form.is_valid():
+            form.save()

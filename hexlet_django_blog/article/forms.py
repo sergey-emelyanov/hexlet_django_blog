@@ -1,5 +1,7 @@
-from django import forms
+from hexlet_django_blog.article.models import ArticleComment
+from django.forms import ModelForm
 
-
-class CommentArticleForm(forms.Form):
-    content = forms.CharField(label='Комментарий')
+class CommentArticleForm(ModelForm):
+    class Meta:
+        model = ArticleComment
+        fields = ['content']
