@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from .forms import CommentArticleForm
+from .forms import CommentArticleForm, ArticleForm
 from hexlet_django_blog.article.models import Article
 
 
@@ -38,3 +38,21 @@ class CommentArticleView(View):
         if form.is_valid():
             form.save()
             return redirect('articles')
+
+
+class ArticleFormCreateView(View):
+
+    def get(self, request, *args, **kwargs):
+        form = ArticleForm()
+        return render(request, 'articles/create.html', context={
+            'form': form
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles')
+        return render(request, 'articles/create.html', context={
+            'form': form
+        })
