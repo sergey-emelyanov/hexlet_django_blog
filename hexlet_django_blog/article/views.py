@@ -19,9 +19,11 @@ class IndexView(View):
 class ArticleView(View):
 
     def get(self, request, *args, **kwargs):
-        article = get_object_or_404(Article, id=kwargs['id'])
+        article_id = kwargs.get('id')
+        article = get_object_or_404(Article, id=article_id)
         return render(request, 'articles/show.html', context={
-            'article': article
+            'article': article,
+            'article_id': article_id
         })
 
 
@@ -55,4 +57,28 @@ class ArticleFormCreateView(View):
             return redirect('articles')
         return render(request, 'articles/create.html', context={
             'form': form
+        })
+
+
+class ArticleFormEditView(View):
+
+    def get(self, request, *args, **kwargs):
+        article_id = kwargs.get('id')
+        article = Article.objects.get(id=article_id)
+        form = ArticleForm(instance=article)
+        return render(request, 'articles/update.html', context={
+            'form': form,
+            'article_id': article_id
+        })
+
+    def post(self, request, *args, **kwargs):
+        article_id = kwargs.get('id')
+        article = Article.objects.get(id=article_id)
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('articles')
+        return render(request, 'articles/update.html', context={
+            'form': form,
+            'article_id': article_id
         })
