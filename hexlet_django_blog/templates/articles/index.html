@@ -6,6 +6,9 @@
 
     <h2><a href="{% url 'article' article.id %}">{{ article.name }}</a></h2>
     <div>{{ article.body }}</div>
-
+    <form action="{% url 'article_delete' article.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Удалить статью">
+    </form>
 {% endfor %}
 {% endblock %}
